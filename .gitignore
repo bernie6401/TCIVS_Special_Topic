@@ -1,0 +1,4 @@
+*.pdf
+./attention-target-detection/
+!open-eye-detector/main.py
+!open-eye-detector/models/
