@@ -4,13 +4,13 @@
 + I just want to write up some problems while I set up the environment and hardware of this project
 
 ## Hardware info.
-> Spec.|Raspberry Pi 3 Model B+
-> :-------------------------:|:---:
-> CPU|ARM Cortex-A53 1.4GHz
-> RAM|1GB SRAM
-> Wi-Fi|2.4GHz and 5GHz
-> Ethernet speed|300Mbps
-> Bluetooth|4..2
+Spec.|Raspberry Pi 3 Model B+
+:-------------------------:|:---:
+CPU|ARM Cortex-A53 1.4GHz
+RAM|1GB SRAM
+Wi-Fi|2.4GHz and 5GHz
+Ethernet speed|300Mbps
+Bluetooth|4..2
 
 ## Set up sequence(Ideal)
 * Install OS to Raspberry pi
@@ -29,7 +29,7 @@
 * Install Anaconda in a correct version
 	```
 	$  cd ~
-	$   curl -O https://repo.anaconda.com/archive/Anaconda3-2021.04-Linux-aarch64.sh
+	$  curl -O https://repo.anaconda.com/archive/Anaconda3-2021.04-Linux-aarch64.sh
 	$  bash Anaconda3-2021.04-Linux-aarch64.sh
 	$  vim ~/.bashrc
 	(add "export PATH='/home/ubuntu/anaconda3/bin:$PATH' at the end")
@@ -51,7 +51,7 @@
 
 ## Problem
 1. There're 3 different OSs can choose including **Raspberry Pi OS**, **Ubuntu server**, **Ubuntu desktop**
-   + First of all is Raspberry Pi OS(32-bits), because it's an official recommendation, I install it first. But as I show the spec. above, the CPU is 64-bits and you must run **Raspberry Pi Imager** before you install OS to Raspberry Pi. Then your OS architecture will be not compatible with Anaconda though it has a 32-bits  version as well. You'll get the error message: ****
+   + First of all is Raspberry Pi OS(32-bits), because it's an official recommendation, I install it first. But as I show the spec. above, the CPU is 64-bits and you must run **Raspberry Pi Imager** before you install OS to Raspberry Pi. Then your OS architecture will be not compatible with Anaconda though it has a 32-bits  version as well. You'll get the error.
    + The second one is Ubuntu-Desktop (22.04 or 20.04). It'll get frozen all the time because of the small SRAM with 1GB
    + The third one seems quite a good choice as an OS. It'll not get frozen because it's just a simply CLI system and it also has an aarch64 version. Then the statements below are the problems you'll encounter.
 
