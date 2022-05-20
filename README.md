@@ -53,7 +53,7 @@ Bluetooth|4..2
 1. There're 3 different OSs can choose including **Raspberry Pi OS**, **Ubuntu server**, **Ubuntu desktop**
    + First of all is Raspberry Pi OS(32-bits), because it's an official recommendation, I install it first. But as I show the spec. above, the CPU is 64-bits and you must run **Raspberry Pi Imager** before you install OS to Raspberry Pi. Then your OS architecture will be not compatible with Anaconda though it has a 32-bits  version as well. You'll get the error.
    + The second one is Ubuntu-Desktop (22.04 or 20.04). It'll get frozen all the time because of the small SRAM with 1GB
-   + The third one seems quite a good choice as an OS. It'll not get frozen because it's just a simply CLI system and it also has an aarch64 version. Then the statements below are the problems you'll encounter.
+   + The third one seems quite a good choice as an OS. It'll not get frozen because it's just a simple CLI system and it also has an aarch64 version. Then the statements below are the problems you'll encounter.
 
 2. If I install Anaconda correctly, I'll encounter a problem that **conda create** instruction can not be used. You'll get an error message like this: **Illegal instruction(core dumped)**. 
 
@@ -61,14 +61,14 @@ Bluetooth|4..2
 
 	+ But...miniconda still has another problem: version conflict with the library. So, this is not the best solution as well.
 
-	+ For more information on this solution: though I can use **conda create** instruction, I can not install python with the 3.6 version. The reason that I must install in this version is for the library I want to install later. If I don't install version 3.6, I can't install **imutils**, **face_recognition**, and **dlib** at the same time. The other library list above including scipy, TensorFlow, NumPy, and so on will install successfully in versions 3.6 to 3.9.
+	+ For more information on this solution: though I can use **conda create** instruction, I can not install python with the 3.6 version. The reason that I must install this version is for the library I want to install later. If I don't install version 3.6, I can't install **imutils**, **face_recognition**, and **dlib** at the same time. The other library list above including scipy, TensorFlow, NumPy, and so on will install successfully in versions 3.6 to 3.9.
 
-	+ Briefly speaking, because of my OS architecture, I can't install these 3 libraries by the statement that anaconda official suppliedd. I can install the package available on **noarch** or **aarch64** platform only.
+	+ Briefly speaking, because of my OS architecture, I can't install these 3 libraries by the statement that anaconda official supplied. I can install the package available on **noarch** or **aarch64** platform only.
 	+ For imutils, like the image below(img1)
 	```$  conda install --channel https://conda.anaconda.org/gilbertfrancoins imutils```
 	+ For face_recognition, like the image below(img2)
 	```$  conda install --channel https://conda.anaconda.org/conda-forge face_recognition```
-	- You can check the error in this [page](https://blog.csdn.net/ksws0292756/article/details/79192268), then there is another problem I encounter is I can not use **anaconda** instruction to search the library package. So, I use my laptop(a normal win10 system) to search.
+	- You can check the error on this [page](https://blog.csdn.net/ksws0292756/article/details/79192268), then there is another problem I encounter is I can not use **anaconda** instruction to search the library package. So, I use my laptop(a normal win10 system) to search.
 	* BTW, you can not use the x86 version, because it'll crash while the installation
 ***
 
@@ -86,13 +86,28 @@ Bluetooth|4..2
 4. Other problems must address
 	* If you install OS and Anaconda successfully.
 
-```
-$  python
-$  import numpy
-
-(error message)
-$  Illegal instruction(core dumped)
-```
+	```
+	$  python
+	$  import numpy
+	
+	(error message)
+	$  Illegal instruction(core dumped)
+	```
 
 ## Conclusion for the above
 > The solutions above are not suitable for this project
+
+## New Solution
+This solution seems fine so far, so I write it up as below
+1. First, we can install **Raspberry Pi OS (64-bit)** by Raspberry Pi Imager. It has a desktop version and is still compatible with the hardware.
+2. Second, install Miniconda by following the instruction on this [page](https://blog.csdn.net/mtl1994/article/details/122240677)(PS version is Miniconda3-py37_4.9.2-Linux-aarch64.sh)
+3. Third, create a new environment in Anaconda without python. You should install python independently(v3.6).
+    ```
+    $ conda install -c moussi python
+    $ conda install -c akode face_recognition_models
+    $ conda install -c gilbertfrancois imutils
+    $ conda install -c conda-forge fortran_stdlib
+    $ conda install -c jetson-tx2 scipy
+    ```
+	These libraries can be installed with python=3.6, but TensorFlow.
+	Please go to this [page](https://anaconda.org) and search the library you want to install(set the platform filter as noarch or Linux-aarch64)
