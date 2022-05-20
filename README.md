@@ -80,10 +80,10 @@ Bluetooth|4..2
 
 ***
 
+3. I also followed [this article](https://blog.csdn.net/YMWM_/article/details/107022521) and tried to address this problem. Though it can use anaconda instruction smoothly, it still has some problems to solve(I forgot the problem, QAQ)
 
-
-3. You might be wondering why I don't use pip instruction. Because you'll get an error message like this: **Illegal instruction(core dumped)**.
-4. Other problems must address
+4. You might be wondering why I don't use pip instruction. Because you'll get an error message like this: **Illegal instruction(core dumped)**.
+5. Other problems must address
 	* If you install OS and Anaconda successfully.
 
 	```
