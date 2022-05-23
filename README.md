@@ -112,7 +112,7 @@ This solution seems fine so far, so I write it up as below
 	$ conda install -c anaconda numpy
 	$ conda install -c conda-forge/label/cf202003 requests
 	$ conda install -c conda-forge keras
-	pip install opencv-contrib-python
+	$ pip install opencv-contrib-python
 	```
 	These libraries can be installed with python=3.6, but TensorFlow.
 	Please go to this [page](https://anaconda.org) and search the library you want to install(set the platform filter as noarch or Linux-aarch64)
