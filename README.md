@@ -108,6 +108,8 @@ This solution seems fine so far, so I write it up as below
     $ conda install -c gilbertfrancois imutils
     $ conda install -c conda-forge fortran_stdlib
     $ conda install -c jetson-tx2 scipy
-    ```
+    $ conda install -c intel tensorflow-base
+	$  conda install -c anaconda numpy
+	```
 	These libraries can be installed with python=3.6, but TensorFlow.
 	Please go to this [page](https://anaconda.org) and search the library you want to install(set the platform filter as noarch or Linux-aarch64)
