@@ -116,3 +116,6 @@ This solution seems fine so far, so I write it up as below
 	```
 	These libraries can be installed with python=3.6, but TensorFlow.
 	Please go to this [page](https://anaconda.org) and search the library you want to install(set the platform filter as noarch or Linux-aarch64)
+
+## Practical Solution
+In order to avoid not being able to do it in the end, we change another solution with higher success rate - we used Arduino instead. You can check the code in [here](https://github.com/bernie6401/TCIVS_Special_Topic/tree/master/serial_read). And our os platform is my x86 laptop, we don't have the software compatible problem.
