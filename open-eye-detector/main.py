@@ -17,8 +17,14 @@ import math
 import threading
 import tensorflow as tf
 
-num_cores = 4
+#-------------------pyserial config-------------------#
+import serial
+com = serial.Serial('COM3',115200)
+close_eye_count = 0
 
+
+#-------------------original code about eye-open-detector-------------------#
+num_cores = 4
 num_CPU = 1
 num_GPU = 1
 
@@ -112,12 +118,19 @@ while(True):
 
         if left_eye_open == 'yes' and right_eye_open == 'yes':
             cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+            com.write('Y'.encode())
+            close_eye_count = 0
+            print('Y')
         else:
             cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255), 2)
+            close_eye_count += 1
+            if close_eye_count % 10 == 0:
+                com.write('N'.encode())
+                print('N')
 
         cv2.imshow('right_eye', right_eye)
         cv2.imshow('left_eye', left_eye)
-
+       
     cv2.imshow('frame', cv2.flip(frame, 1))
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
