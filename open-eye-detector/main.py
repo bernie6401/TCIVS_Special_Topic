@@ -1,25 +1,27 @@
 from keras import backend as K
-import imutils
 from keras.models import load_model
 import numpy as np
-import keras
-import requests
-from scipy.spatial import distance as dist
 from imutils import face_utils
 import time
 import dlib
 import cv2,os,sys
-import collections
-import random
 import face_recognition
-import pickle
-import math
-import threading
 import tensorflow as tf
+import argparse
+
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--com', type=str, default='3', help='Set you COM port from device manager')
+    parser.add_argument('--eyeclosednum', type=int, default=10, help='Set the time number of closing eye')
+    
+    return parser.parse_args()
+
+args = parse_args() 
 
 #-------------------pyserial config-------------------#
 import serial
-com = serial.Serial('COM3',115200)
+com = serial.Serial('COM'+ args.com, 115200)
 close_eye_count = 0
 
 
@@ -124,7 +126,7 @@ while(True):
         else:
             cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255), 2)
             close_eye_count += 1
-            if close_eye_count % 10 == 0:
+            if close_eye_count % args.eyeclosednum == 0:
                 com.write('N'.encode())
                 print('N')
 
