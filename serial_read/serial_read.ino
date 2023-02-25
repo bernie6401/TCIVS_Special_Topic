@@ -1,6 +1,6 @@
 String arrivingdatabyte;
-int buzzer = 13;
-int vibrate = 12;
+int buzzer = 12;
+int vibrate = 13;
 void setup()
 {
   pinMode(vibrate, OUTPUT);
