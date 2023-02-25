@@ -1,23 +1,40 @@
-// the setup function runs once when you press reset or power the board
-int arrivingdatabyte;
+String arrivingdatabyte;
+int buzzer = 13;
+int vibrate = 12;
 void setup()
 {
-  // initialize digital pin LED_BUILTIN as an output.
-  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(vibrate, OUTPUT);
+  pinMode(buzzer, OUTPUT);
   Serial.begin(115200);  
 }
 
-// the loop function runs over and over again forever
+
 void loop()
 {
-  if (Serial.available( ) > 0)
-  {
-    arrivingdatabyte = Serial.read();  // It will read the incoming or arriving data byte  
+  if (Serial.available())
+  { 
+    arrivingdatabyte = Serial.readStringUntil('\n');
     Serial.print("data byte received:");  
-    Serial.println(arrivingdatabyte);  
+    Serial.println(arrivingdatabyte);
+
+    if(arrivingdatabyte == "Y")
+    {
+      digitalWrite(buzzer, LOW);
+      digitalWrite(vibrate, LOW);
+    }
+    if(arrivingdatabyte == "V")
+    {
+      // while(true)
+      // {
+      digitalWrite(vibrate, HIGH);
+      // arrivingdatabyte = Serial.readStringUntil('\n');
+      // if(arrivingdatabyte == "Y")
+      //   break;
+      // }        
+    }
+    if(arrivingdatabyte == "N")
+    {
+      digitalWrite(buzzer, HIGH);
+    }
   }
-//  digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-//  delay(1000);                       // wait for a second
-//  digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
-//  delay(1000);                       // wait for a second
 }
