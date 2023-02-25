@@ -120,15 +120,20 @@ while(True):
 
         if left_eye_open == 'yes' and right_eye_open == 'yes':
             cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
-            com.write('Y'.encode())
+            # com.write('Y'.encode())
+            com.write(b'Y\n')
             close_eye_count = 0
             print('Y')
         else:
             cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255), 2)
             close_eye_count += 1
             if close_eye_count % args.eyeclosednum == 0:
-                com.write('N'.encode())
+                # com.write('N'.encode())
+                com.write(b'N\n')
                 print('N')
+            if close_eye_count % (args.eyeclosednum // 2) == 0:
+                com.write(b'V\n')
+                print('V')
 
         cv2.imshow('right_eye', right_eye)
         cv2.imshow('left_eye', left_eye)
