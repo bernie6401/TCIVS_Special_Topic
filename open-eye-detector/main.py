@@ -65,6 +65,11 @@ def predict_eye_state(model, image):
 
 cap = cv2.VideoCapture(0)
 scale = 0.5
+width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))    # 取得影像寬度
+height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))  # 取得影像高度
+fourcc = cv2.VideoWriter_fourcc(*'MJPG')          # 設定影片的格式為 MJPG
+out = cv2.VideoWriter('output.mp4', fourcc, 20.0, (width,  height))  # 產生空的影片
+
 while(True):
     c = time.time()
 
@@ -72,6 +77,7 @@ while(True):
     ret, frame = cap.read()
 
     image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    out.write(frame)       # 將取得的每一幀圖像寫入空的影片
 
     original_height, original_width = image.shape[:2]
 
