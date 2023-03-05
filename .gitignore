@@ -1,3 +1,6 @@
 open-eye-detector/*
 !open-eye-detector/main.py
 !open-eye-detector/models/
+
+__pycache__/*
+wxtest*
